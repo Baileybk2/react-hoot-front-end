@@ -1,10 +1,35 @@
 import { AuthedUserContext } from '../../App';
 import { useContext } from 'react';
+import WarningAlert from "../Alert/WarningAlert.jsx";
+import NoAlert from "../Alert/NoAlert.jsx";
 
-const Dashboard = ({}) => {
+// must create a list of compromised users in database with list of bad websites to show--> schema: add "isCompromised" to user
+// add new alert components
+// render conditionally if user is compromised or not
+// yellow alert for compromised user
+// list of websites email was compromised
+// p element
+// 2 buttons: change password and dismiss
+// onclick for dismiss: alert should switch to uncompromised (white) and read "No Alerts"
+// no color and "No Alerts" for uncompromised user
+
+// BONUS: add change password functionality
+// BONUS: render the "No Alerts" alert once password changed and user signs back in.. "if password new..."
+
+
+const Dashboard = () => {
   const user = useContext(AuthedUserContext);
+  // const alert = {
+  //     alertType: "warning",
+  //     alertMessages: ['warning message 1', 'warning message 2', 'warning message 3']
+  // }
+    const alert = {
+        alertType: "no alert",
+        alertMessages: []
+    }
   return (
     <main>
+        {alert.alertType === "warning"? <WarningAlert alert={alert} /> : <NoAlert />}
       <h1>Welcome, {user.username}</h1>
       <p>
         This is the dashboard page where you, and only you, can see a dashboard
