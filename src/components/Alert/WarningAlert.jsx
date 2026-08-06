@@ -1,6 +1,18 @@
 import {Link} from "react-router-dom";
 import "../../App.css";
 
+// take alert messages ul and make it a component in warning alert component -- remove inline logic
+// create a const of the warning list and then render it where ul is
+
+const AlertList = ({alert}) => {
+    return (
+        <ul>
+            {alert.alertMessages.map((message, index) => (
+                <li key={index}>{message}</li>
+            ))}
+        </ul>
+    )
+}
 const WarningAlert = ({alert}) => {
     // for each alert message make an li and render the messages
     // make alert container yellow
@@ -13,11 +25,7 @@ const WarningAlert = ({alert}) => {
             <p>
                 Your email was involved in a breach in the following sites:
             </p>
-            <ul>
-                {alert.alertMessages.map((message, index) => (
-                <li key={index}>{message}</li>
-                ))}
-            </ul>
+            <AlertList alert={alert}/>
             <p>
                 We recommend you change your password
             </p>

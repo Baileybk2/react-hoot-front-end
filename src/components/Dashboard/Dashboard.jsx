@@ -19,17 +19,28 @@ import NoAlert from "../Alert/NoAlert.jsx";
 
 const Dashboard = () => {
   const user = useContext(AuthedUserContext);
-  // const alert = {
-  //     alertType: "warning",
-  //     alertMessages: ['warning message 1', 'warning message 2', 'warning message 3']
-  // }
-    const alert = {
-        alertType: "no alert",
-        alertMessages: []
-    }
+  const alert = {
+      alertType: "warning",
+      alertMessages: ['warning message 1', 'warning message 2', 'warning message 3']
+  }
+  //   const alert = {
+  //       alertType: "no alert",
+  //       alertMessages: []
+  //   }
+
+// refactor the alert ternary to be handled in an alert component
+// replace the ternary with the alert component
+  const DashboardAlert = () => {
+      if (alert.alertType === "warning") {
+          return <WarningAlert alert={alert}/>
+      } else {
+          return <NoAlert />
+      }
+  }
+
   return (
     <main>
-        {alert.alertType === "warning"? <WarningAlert alert={alert} /> : <NoAlert />}
+        <DashboardAlert />
       <h1>Welcome, {user.username}</h1>
       <p>
         This is the dashboard page where you, and only you, can see a dashboard
